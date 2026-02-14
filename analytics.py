@@ -33,13 +33,21 @@ def region_aggregate(
 
     if lat_col and lon_col and lat_col in df.columns and lon_col in df.columns:
         # Use mean coordinate per region for mapping.
-        coords = df.groupby(region_col, dropna=False)[[lat_col, lon_col]].mean(numeric_only=True).reset_index()
-        coords = coords.rename(columns={region_col: "region", lat_col: "lat", lon_col: "lon"})
+        coords = (
+            df.groupby(region_col, dropna=False)[[lat_col, lon_col]]
+            .mean(numeric_only=True)
+            .reset_index()
+        )
+        coords = coords.rename(
+            columns={region_col: "region", lat_col: "lat", lon_col: "lon"}
+        )
         grouped = grouped.merge(coords, on="region", how="left")
 
     grouped["value"] = pd.to_numeric(grouped["value"], errors="coerce")
     grouped = grouped.dropna(subset=["value"])
-    grouped = grouped.sort_values("value", ascending=False, kind="mergesort").reset_index(drop=True)
+    grouped = grouped.sort_values(
+        "value", ascending=False, kind="mergesort"
+    ).reset_index(drop=True)
     return grouped
 
 
@@ -95,7 +103,11 @@ def trends(
     bucket_col = "__bucket__"
     out = out.rename(columns={date_col: bucket_col})
     out["date"] = out[bucket_col].dt.date.astype(str)
-    out = out.drop(columns=[bucket_col]).sort_values(["date", "region"]).reset_index(drop=True)
+    out = (
+        out.drop(columns=[bucket_col])
+        .sort_values(["date", "region"])
+        .reset_index(drop=True)
+    )
     return out
 
 
@@ -120,7 +132,9 @@ def executive_summary(
         }
 
     total = float(agg_df["value"].sum())
-    top, bottom = rankings(df, region_col=region_col, value_col=value_col, agg=agg, top_n=top_n)
+    top, bottom = rankings(
+        df, region_col=region_col, value_col=value_col, agg=agg, top_n=top_n
+    )
 
     best = top[0]
     worst = bottom[0] if bottom else top[-1]
@@ -138,11 +152,12 @@ def executive_summary(
     for rv in top:
         regional_comparison[rv.region] = {f"{metric}_{agg}": f"{rv.value:,.2f}"}
     for rv in bottom:
-        regional_comparison.setdefault(rv.region, {f"{metric}_{agg}": f"{rv.value:,.2f}"})
+        regional_comparison.setdefault(
+            rv.region, {f"{metric}_{agg}": f"{rv.value:,.2f}"}
+        )
 
     return {
         "summary": f"{best.region} leads on {metric} ({agg}), while {worst.region} lags.",
         "key_findings": key_findings,
         "regional_comparison": regional_comparison,
     }
-
