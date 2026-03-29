@@ -2,9 +2,9 @@
 
 ### Enable repository git hooks (recommended)
 
-This repo includes a `pre-push` hook to prevent direct pushes to the protected `master` branch.
+This repo includes a `pre-push` hook to prevent direct pushes to the protected `main` branch.
 
-1. Configure git to use the repo’s hook directory:
+1. Configure git to use the repo's hook directory:
 
    `git config core.hooksPath scripts/git-hooks`
 
@@ -12,7 +12,7 @@ This repo includes a `pre-push` hook to prevent direct pushes to the protected `
 
    `chmod +x scripts/git-hooks/pre-push`
 
-After that, any attempt to `git push` updates directly to `master` will be blocked locally.
+After that, any attempt to `git push` updates directly to `main` will be blocked locally.
 
 ## Code Style
 ## Testing
