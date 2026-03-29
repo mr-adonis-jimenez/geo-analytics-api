@@ -1,17 +1,16 @@
 ## Release Pipeline
 
-- ✔ OIDC-based npm publishing (no secrets)
+- ✔ OIDC-based publishing (no secrets)
 - ✔ Verified supply-chain provenance
 - ✔ Automated quality gates (lint, test, audit)
 - ✔ Reusable CI workflows
 
 ## Contributing / Branch protection
 
-Direct pushes to `master` should be avoided. See `CONTRIBUTING.md` to enable the repo’s `pre-push` hook that blocks direct pushes to `master` locally.
+Direct pushes to `main` should be avoided. See `CONTRIBUTING.md` to enable the repo's `pre-push` hook that blocks direct pushes to `main` locally.
 
-  ## Release & Security Architecture
+## Release & Security Architecture
 
-- Monorepo publishing with npm workspaces
 - OIDC-based trusted publishing (no secrets)
 - Canary & RC release channels
 - SBOM generation (CycloneDX)
@@ -20,9 +19,8 @@ Direct pushes to `master` should be avoided. See `CONTRIBUTING.md` to enable the
 
 This pipeline enforces supply-chain integrity and production-grade quality gates.
 
-
-![npm](https://img.shields.io/npm/v/your-package)
-![CI](https://github.com/you/repo/actions/workflows/npm-publish.yml/badge.svg)
+![CI](https://github.com/mr-adonis-jimenez/geo-analytics-api/actions/workflows/ci-cd.yml/badge.svg)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 # 🌎 Geo-Analytics API/Dashboard
 
@@ -113,4 +111,3 @@ curl -s -X POST "http://localhost:8000/api/datasets/json?name=my-dataset" \
 curl -s -X POST "http://localhost:8000/api/datasets/csv?name=my-csv" \
   -F "file=@regional_data.csv" | jq
 ```
-

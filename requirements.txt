@@ -1,6 +1,16 @@
+# Core
 fastapi
-uvicorn
+uvicorn[standard]
 pandas
-pytest
+numpy
 python-multipart
+
+# Dev / testing
+pytest
+pytest-cov
+pytest-asyncio
 httpx
+black
+flake8
+isort
+pylint

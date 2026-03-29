@@ -1,0 +1,18 @@
+# Global owners
+* @mr-adonis-jimenez
+
+# Frontend code
+/frontend/** @mr-adonis-jimenez
+
+# Backend API
+/api/** @mr-adonis-jimenez
+
+# Infrastructure
+/terraform/** @mr-adonis-jimenez
+/.github/** @mr-adonis-jimenez
+
+# Documentation
+/docs/** @mr-adonis-jimenez
+
+# Critical security files
+/auth/** @mr-adonis-jimenez
